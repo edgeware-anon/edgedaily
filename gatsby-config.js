@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: "/edgedaily",
   siteMetadata: {
     title: "edgedaily",
   },
