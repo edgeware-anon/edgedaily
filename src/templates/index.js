@@ -1,6 +1,8 @@
 import * as React from "react";
 import Header from "../components/header";
 import { Link } from "gatsby";
+ import { graphql } from 'gatsby';
+
 
 
 // markup
