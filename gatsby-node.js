@@ -27,14 +27,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
   
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      node.frontmatter.tags.includes("wg") ?
-        createPage({
-            path: node.frontmatter.slug,
-            component: blogPostTemplate,
-            context: {
-            slug: node.frontmatter.slug,
-            },
-        }) :
         createPage({
             path: node.frontmatter.slug,
             component: blogPostTemplate,
