@@ -19,7 +19,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
     `)
-  
+
     // Handle errors
     if (result.errors) {
       reporter.panicOnBuild(`Error while running GraphQL query.`)
@@ -27,12 +27,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
   
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      createPage({
-        path: node.frontmatter.slug,
-        component: blogPostTemplate,
-        context: {
-          slug: node.frontmatter.slug,
-        },
-      })
+      node.frontmatter.tags.includes("wg") ?
+        createPage({
+            path: node.frontmatter.slug,
+            component: blogPostTemplate,
+            context: {
+            slug: node.frontmatter.slug,
+            },
+        }) :
+        createPage({
+            path: node.frontmatter.slug,
+            component: blogPostTemplate,
+            context: {
+            slug: node.frontmatter.slug,
+            },
+        })
     })
   }

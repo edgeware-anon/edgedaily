@@ -2,6 +2,7 @@ import * as React from "react";
 import Header from "../components/header";
 import { Link } from "gatsby";
  import { graphql } from 'gatsby';
+import WorkingGroups from "../components/workingGroups";
 
 
 
@@ -12,17 +13,24 @@ const IndexPage = ({
   },
 }) => {
   const Posts = edges
+    .filter(edge => !edge.node.frontmatter.tags.includes('wg'))
     .map(edge => (
         <article key={edge.node.id}>
           <h1><Link to={edge.node.frontmatter.slug}>{edge.node.frontmatter.title}</Link></h1>
         </article>
     ))
+  const Wgs = edges
+    .filter(edge => edge.node.frontmatter.tags.includes('wg'));
 
   return (
     <main>
       <title>Home Page</title>
       <Header/>
-      <section>{Posts}</section> 
+      <WorkingGroups data={Wgs}/>
+      <section>
+        <h4>Posts:</h4>
+        {Posts}
+      </section>
     </main>
   )
 }
@@ -38,6 +46,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             slug
             title
+            tags
           }
         }
       }
