@@ -5,9 +5,7 @@ const WorkingGroups = (data) => {
     const Groups = data.data
         .filter(edge => edge.node.frontmatter.tags.includes('wg'))
         .map(edge => (
-            <article key={edge.node.id}>
-            <h1><Link to={edge.node.frontmatter.slug}>{edge.node.frontmatter.title}</Link></h1>
-            </article>
+            <span key={edge.node.id}><Link to={edge.node.frontmatter.slug}>{edge.node.frontmatter.title}</Link>, </span>
         ));
 
     return (
