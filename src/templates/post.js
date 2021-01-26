@@ -1,11 +1,15 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Header from "../components/header"
+import WorkingGroups from "../components/workingGroups"
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
+  const { markdownRemark, allMarkdownRemark } = data // data.markdownRemark holds your post data
+  const Wgs = allMarkdownRemark.edges
+  .filter(edge => edge.node.frontmatter.tags.includes('wg'));
+
   const { frontmatter, html } = markdownRemark
   return (<>
     <Header/>
@@ -18,8 +22,11 @@ export default function Template({
         />
       </div>
     </div>
+    <footer>
+      { frontmatter.tags.includes('wg') && <WorkingGroups data={Wgs}/>}
+    </footer>
     </>
-  )
+  );
 }
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -29,6 +36,21 @@ export const pageQuery = graphql`
         date(formatString: "MM.DD.YY")
         slug
         title
+        tags
+      }
+    },
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          id
+          excerpt(pruneLength: 120)
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            slug
+            title
+            tags
+          }
+        }
       }
     }
   }
