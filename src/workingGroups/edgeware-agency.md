@@ -1,6 +1,6 @@
 ---
 slug: "edgeware-agency"
-date: "2019-05-04"
+date: "2021-01-25"
 title: "edgeware agency"
 tags: ["wg"]
 ---
