@@ -5,7 +5,7 @@ title: "edgeware agency"
 tags: ["wg"]
 ---
 
-edgeware agency is a a working group that has been focused on branding, messaging, and communications for the edgeware community. 
+edgeware agency is a working group that has been focused on branding, messaging, and communications for the edgeware community. 
 
 formerly the "brand working group"
 
