@@ -1,5 +1,6 @@
 import * as React from "react";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import { Link } from "gatsby";
  import { graphql } from 'gatsby';
 import WorkingGroups from "../components/workingGroups";
@@ -31,6 +32,7 @@ const IndexPage = ({
         <h4>Posts:</h4>
         {Posts}
       </section>
+      <Footer />
     </main>
   )
 }
